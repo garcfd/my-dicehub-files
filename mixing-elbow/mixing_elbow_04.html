@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>dicehub mixing elbow tutorial</title>
+
+<style>
+body {background-color: powderblue;}
+h1 {color: midnightblue;  font-family: verdana; font-size: 200%;}
+h2 {color: darkslateblue; font-family: verdana; font-size: 150%;}
+h3 {color: slateblue;     font-family: verdana; font-size: 100%;}
+
+p     {color: black; font-family: verdana; font-size: 100%; line-height: 20px;}
+ul,ol {color: black; font-family: verdana; font-size: 100%; line-height: 30px;}
+</style>
+</head>
+
+
+<body bgcolor="grey" text="black" width="400">
+
+<h1>mixing elbow tutorial</h1>
+
+<h2>mixing elbow summary</h2>
+
+<p>
+The mixing elbow is a 3D pipe geometry with a main inlet and outlet, and a secondary inlet on the curved section of the pipe. The case is designed to demonstrate the 3D mixing process which occurs when a secondary flow is injected into a primary flow at different speed. The main pipe geometry is 1.0m diameter and the secondary inlet is 0.5m diameter. The single STL file used in this demo contains both the pipe geometry and the inlets and outlet geometry, so there is no need for multiple STL files. The meshing will be done with the <b>snappyHexMesh</b> application (this is currently the only mesher available). We will be using the <b>simpleFoam</b> (steady-state) flow solver, since we are modelling the incompressible flow of water, with turbulence. There are no temperature effects included in this analysis, since we are using the standard form of the simpleFoam solver, which does not include temperature.
+</p> 
+
+<h2> the dicehub process </h2>
+
+<p>
+When using the <b> Dicehub </b> platform to complete an analysis, the following process is used. You start with an STL file which has to be uploaded to the meshing application. When the meshing is completed, the mesh has to be imported into the solver. When the solver has finshed you can view the flow solution results online or download them to your machine. The various stages of the mesher and solver setup will be very familiar if you have any previous experience of OpenFoam. Here is a brief overview of the process:
+</p>
+
+<ul>
+<dt> <b> a) create new project </b> </dt>
+<dt> <b> b) mesh generation </b> </dt>
+     <dd> - create meshing application    </dd>
+     <dd> - upload STL file to mesher     </dd>
+     <dd> - setup and run the mesher      </dd>
+     <dd> &nbsp (work through steps 1-10) </dd>
+     <dd> - inspect the mesh (if needed)  </dd>
+     <dd> - download the mesh (if needed) </dd>
+<dt> <b> c) flow solution </b> </dt>
+     <dd> - create solver application     </dd> 
+     <dd> - import mesh into solver       </dd>
+     <dd> - setup and run the solver      </dd>
+     <dd> &nbsp (work through steps 1-10) </dd>
+     <dd> - check the convergence         </dd>
+     <dd> - inspect flow solution (if needed) </dd>
+     <dd> - download flow solution (if needed) </dd>
+</ul>
+
+
+<h2> a) create new project </h2>
+
+
+<ul>
+<li> go to the <b>dicehub</b> website and login to your account
+<li> to create a new project:
+    <dd>  - select <b>New project</b> 
+    <dd>  <img src="new-project1.png">
+    <dd>  - or <b>+New</b> and <b>New project</b> (top right)  </dd>
+    <dd>  <img src="new-project2.png">
+    <dd>  - enter a project name such as <b>"mixing elbow"</b> </dd>
+    <dd>  - select the visibility of your project eg <b>internal</b> </dd>
+    <dd>  - select the <b>Create Project</b> button </dd>
+
+<li> now you have created a new project directory where </li>
+<dt> the mesher and solver applications will be located </dt>
+</ul>
+
+
+<h2> b) mesh generation </h2>
+
+<ul>
+  <li> hover over the image where it says: 
+  <dt> <i> MESHER - Hex dominant mesher </i>
+  <dt> <img src="mesher-app.png">
+  <dt> &nbsp
+
+  <li> then select <b>Create Application</b>...
+  <dt> this chooses the <b>snappyHexMesh</b> mesher,
+  <dt> and takes you to the mesh setup as follows:
+  <dt> &nbsp  
+
+       <dd> 1. Geometries 
+       <dd> 2. Background Mesh 
+       <dd> 3. Material Point 
+       <dd> 4. Edges Refinement 
+       <dd> 5. Surface Refinement 
+       <dd> 6. Volume Refinement 
+       <dd> 7. Boundary Layers 
+       <dd> 8. Cell Zones 
+       <dd> 9. Run 
+       <dd> 10. Result </dd>
+
+  <dt> &nbsp  
+  <li> <b>NOTE:</b> 
+  <dt>   each meshing application name is created randomly
+  <dt>   for example <b> epic_cohen (Mesher) </b>
+  <dt>   this can be changed by clicking and editting it
+  <dt>   <img src="epic-cohen.png">
+
+</ul>
+
+<h3> 1. Mesher > Geometries</h3>
+<h3> 2. Mesher > Background Mesh</h3>
+<h3> 3. Mesher > Material Point</h3>
+<h3> 4. Mesher > Edges Refinement</h3>
+<h3> 5. Mesher > Surface Refinement</h3>
+<h3> 6. Mesher > Volume Refinement</h3>
+<h3> 7. Mesher > Boundary Layers</h3>
+<h3> 8. Mesher > Cell Zones</h3>
+<h3> 9. Mesher > Run </h3>
+<h3> 10. Mesher > Result </h3>
+
+
+<h2> c) flow solution </h2>
+
+<ul>
+  <li> hover mouse over the car image where it says: </li>
+  <dt> <i> SOLVER - Incompressible steady-state fluid flow </i> </dt>
+  <dt> <img src="solver-app.png">
+
+  <li> then select <b>Create Application</b>...</li>
+  <dt> this chooses the <b>simpleFoam</b> solver, </dt>
+  <dt> and takes you to the solver setup as follows: </dt>
+       <dd>
+       <dd> 1. Mesh Import 
+       <dd> 2. Materials 
+       <dd> 3. Turbulence 
+       <dd> 4. Boundary Conditions 
+       <dd> 5. Initialisation 
+       <dd> 6. Solver Settings 
+       <dd> 7. Numerics 
+       <dd> 8. Monitors 
+       <dd> 9. Run 
+       <dd> 10. Result 
+
+  <dt> &nbsp  
+  <li>  <b>NOTE:</b> 
+  <dt>  each solver application name is created randomly
+  <dt>  (eg. <b>sleepy_beaver (ISS Solver)</b>)
+  <dt>  this can be changed by clicking and editting it
+  <dt>  <img src="sleepy-beaver.png">
+
+</ul>
+
+<h3> 1. Solver > Mesh Import </h3>
+<h3> 2. Solver > Materials </h3>
+<h3> 3. Solver > Turbulence </h3>
+<h3> 4. Solver > Boundary Conditions </h3>
+<h3> 5. Solver > Initialisation </h3>
+<h3> 6. Solver > Solver Settings </h3>
+<h3> 7. Solver > Numerics </h3>
+<h3> 8. Solver > Monitors </h3>
+<h3> 9. Solver > Run </h3>
+<h3> 10. Solver > Result </h3>
+
+</body>
+</html>
